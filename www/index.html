@@ -45,8 +45,9 @@ frame.on("ready", function() {
         image: bowserfSprite,
         cols: 11,
         rows: 1,
-        width: 330,
-        animations: {leftToRight:[0,5], rightToLeft:[6, 11]}
+        width: 340,
+				offsetX: -3,
+        animations: {leftToRight:[0,5]}
       });
 
       let layoutManager = new LayoutManager;
@@ -108,12 +109,19 @@ frame.on("ready", function() {
       // });
 
       bowserFront.centerReg(content2).sca(2);
-      bowserFront.run({
-        time: 4000,
-        labe: 'leftToRight',
-        rewind: true,
-        loop: false
-      });
+      // bowserFront.run({
+      //   time: 4000,
+      //   labe: 'leftToRight',
+      //   rewind: false,
+      //   loop: false
+      // });
+			bowserFront.run({
+				time: 2000,
+				startFrame:5,
+				endFrame: 0,
+				rewind: true,
+				loop: true
+			});
 
       frame.on('resize', resize);
       function resize() {
