@@ -100,15 +100,15 @@ frame.on("ready", function() {
         footer.selectedIndex = 1;
       });
 
-      // bowserBack.centerReg(content2).sca(2);
-      // bowserBack.run({
-      //   time: 2000,
-      //   label: 'ride',
-      //   rewind: true,
-      //   loop: true
-      // });
+      bowserBack.centerReg(content2).sca(2);
+      bowserBack.run({
+        time: 2000,
+        label: 'ride',
+        rewind: true,
+        loop: true
+      });
 
-      bowserFront.centerReg(content2).sca(2);
+      bowserFront.centerReg(content2).sca(2).mov(0, 200);
       // bowserFront.run({
       //   time: 4000,
       //   labe: 'leftToRight',
@@ -121,6 +121,30 @@ frame.on("ready", function() {
 				endFrame: 0,
 				rewind: true,
 				loop: true
+			});
+
+			function randCoord() {
+				let randx = Math.floor(Math.random() * 600) - 300;
+				let randy = Math.floor(Math.random() * 600) - 300;
+				return {
+					x: randx,
+					y: randy
+				}
+			}
+
+			bowserFront.on('click', ()=>{
+				let coords = randCoord();
+				console.log(coords);
+				let bClone = bowserFront.clone().centerReg().mov(coords.x, coords.y);
+				bClone.run({
+					time: 2000,
+					startFrame:5,
+					endFrame: 0,
+					rewind: true,
+					loop: true
+				});
+				console.log(bowserFront);
+				console.log(bClone);
 			});
 
       frame.on('resize', resize);
