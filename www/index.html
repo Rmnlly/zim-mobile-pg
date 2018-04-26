@@ -110,11 +110,15 @@ frame.on("ready", function() {
 
 			bowserBack.on('click', ()=>{
 				let coords = randCoord();
-				let fClone = bowserBack.clone().centerReg().mov(coords.x, coords.y);
+				let fClone = bowserBack.clone().centerReg(content2).mov(coords.x, coords.y);
+				fClone.animate({
+					obj:{y:stageH - (stageH + 20)},
+					ease:"ease",
+					time:2500
+				});
 				fClone.run({
 					time: 2000,
-					startFrame:5,
-					endFrame: 0,
+					label: 'ride',
 					rewind: true,
 					loop: true
 				});
@@ -140,7 +144,12 @@ frame.on("ready", function() {
 
 			bowserFront.on('click', ()=>{
 				let coords = randCoord();
-				let bClone = bowserFront.clone().centerReg().mov(coords.x, coords.y);
+				let bClone = bowserFront.clone().centerReg(content2).mov(coords.x, coords.y);
+				bClone.animate({
+					obj:{x:stageW - (stageW + 20)},
+					ease:"ease",
+					time:2500
+				});
 				bClone.run({
 					time: 2000,
 					startFrame:5,
