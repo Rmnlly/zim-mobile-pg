@@ -103,6 +103,12 @@ frame.on("ready", function() {
 			let upBowsers = 0;
 			let sideBowsers = 0;
 
+			let directions = new Label({
+				text: 'Tap the bowsers!',
+				size: 20,
+				color: frame.black
+			}).centerReg(content2);
+
 			let bowserNum = new Label({
 			   text:`There are: ${upBowsers} bowsers
 who have gone up!`,
