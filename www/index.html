@@ -70,7 +70,7 @@ frame.on("ready", function() {
 
       //Page 2 stuff
       let content2 = new Container(stageW, stageH*0.9).addTo(page2);
-      let circle = new Circle(10, frame.green).center(content).drag();
+      // let circle = new Circle(10, frame.green).center(content).drag();
       let footer2 = new Tabs({
           tabs:["Page1","Page2"]
       }).addTo(page2);
@@ -100,6 +100,25 @@ frame.on("ready", function() {
         footer.selectedIndex = 1;
       });
 
+			let upBowsers = 0;
+			let sideBowsers = 0;
+
+			let bowserNum = new Label({
+			   text:`There are: ${upBowsers} bowsers
+who have gone up!`,
+			   size:20,
+			   font:"courier",
+			   color:"#7647A2"
+		  }).addTo(content).pos(stageW/2 - 100, 200);
+
+			let bowserNum2 = new Label({
+			   text:`There are: ${sideBowsers} bowsers
+who are moving left!`,
+			   size:20,
+			   font:"courier",
+			   color:"#7647A2"
+		  }).addTo(content).pos(stageW/2 - 100, 400);
+
       bowserBack.centerReg(content2).sca(2).mov(0,-100);
       bowserBack.run({
         time: 2000,
@@ -109,6 +128,9 @@ frame.on("ready", function() {
       });
 
 			bowserBack.on('click', ()=>{
+				upBowsers += 1;
+				bowserNum.text = `There are: ${upBowsers} bowsers
+who have gone up!`;
 				let coords = randCoord();
 				let fClone = bowserBack.clone().centerReg(content2).mov(coords.x, coords.y);
 				fClone.animate({
@@ -122,6 +144,7 @@ frame.on("ready", function() {
 					rewind: true,
 					loop: true
 				});
+				stage.update();
 			});
 
       bowserFront.centerReg(content2).sca(2).mov(0, 200);
@@ -143,6 +166,9 @@ frame.on("ready", function() {
 			}
 
 			bowserFront.on('click', ()=>{
+				sideBowsers += 1;
+				bowserNum2.text = `There are: ${sideBowsers} bowsers
+who are moving left!`
 				let coords = randCoord();
 				let bClone = bowserFront.clone().centerReg(content2).mov(coords.x, coords.y);
 				bClone.animate({
@@ -157,6 +183,7 @@ frame.on("ready", function() {
 					rewind: true,
 					loop: true
 				});
+				stage.update();
 			});
 
       frame.on('resize', resize);
